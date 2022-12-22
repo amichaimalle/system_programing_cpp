@@ -12,7 +12,7 @@ class VendingMachine {
         DispenserType carrot;
         DispenserType pomegranate;
         CashRegister counter;
-        bool getPayment(int price);
+        int getPayment(int price);
         void printSoldOut() const;
         void sellFruit(DispenserType fruit);
         void printCollectItem() const;
@@ -20,6 +20,5 @@ class VendingMachine {
     public:
         VendingMachine();
         void sellProduct(char product);
-        //void showSelection();
         ~VendingMachine();
 };

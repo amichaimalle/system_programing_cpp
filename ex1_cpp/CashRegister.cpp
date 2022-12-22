@@ -5,6 +5,8 @@
 
 #include "CashRegister.h"
 
+
+
 void CashRegister::acceptAmount(int amountIn){
     cashOnHand += amountIn;
 }

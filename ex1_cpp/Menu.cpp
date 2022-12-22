@@ -9,7 +9,7 @@ using namespace std;
 #include "Menu.h"
 
 Menu::Menu()
-    : Machine(), stack(){
+{//: Machine(), stack(){
     choice = 0;
 };
 void Menu::mainMenu(){
@@ -31,8 +31,6 @@ void Menu::mainMenu(){
         cin >> choice;
     }
     cout << "Goodbye!" << endl;
-    //delete this;
-
 }
 void Menu::printMainMenu() const{
     cout << "(1) Fresh juice Shop" << endl;
@@ -114,8 +112,4 @@ void Menu::printStackMenu() const{
     cout << "4 Check if empty" << endl;
     cout << "5 To exit" << endl;
 }
-Menu::~Menu(){
-    //cout << "0!" << endl;
-    //delete &Machine;
-    //delete &stack;
-};
+Menu::~Menu(){};

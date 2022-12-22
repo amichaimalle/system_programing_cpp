@@ -32,31 +32,31 @@ void VendingMachine::sellProduct(char product) {
 void VendingMachine::sellFruit(DispenserType fruit) {
     int moneyReceived = 0;
     if (fruit.getNoOfItems() > 0) {
-        if (getPayment(fruit.getCost())) {
+        moneyReceived = getPayment(fruit.getCost());
+        if (moneyReceived > fruit.getCost()) {
             printCollectItem();
             fruit.makeSale();
-            counter.acceptAmount(fruit.getCost());
+            counter.acceptAmount(moneyReceived);
         } else {
             printNotEnoughMoney();
         }
     } else {printSoldOut();}
 }
-bool VendingMachine::getPayment(int price) {
-    int paymentNeeded = price;
+int VendingMachine::getPayment(int price) {
+    int moneyInHand = 0;
     int moneyRecived = 0;
     cout << "Please deposit " << price << " cents" << endl;
-    cin >> moneyRecived;
-    paymentNeeded = paymentNeeded - moneyRecived;
-    if (paymentNeeded > 0){
+    cin >> moneyInHand;
+    moneyRecived = moneyInHand;
+    if (moneyRecived < price){
         cout << "Please deposit another " << price - moneyRecived << " cents" << endl;
-        cin >> moneyRecived;
-        paymentNeeded = paymentNeeded - moneyRecived;
+        cin >> moneyInHand;
+        moneyRecived = moneyRecived + moneyInHand;
     }
-    if (paymentNeeded > 0){return false;}
-    return true;
+    return moneyRecived;
 }
 void VendingMachine::printSoldOut() const {
-    cout << "Sorry, this item is sold out" << endl;
+    cout << "Sorry, this item is sold out." << endl;
 }
 void VendingMachine::printCollectItem() const {
     cout << "Collect your item at the bottom and enjoy" << endl;

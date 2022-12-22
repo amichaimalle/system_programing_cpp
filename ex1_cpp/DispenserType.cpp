@@ -9,20 +9,14 @@ using namespace std;
 #include "DispenserType.h"
 
 DispenserType::DispenserType(int setNoOfItems, int setCost) {
+    cout << "DispenserType constructor" << endl;
     numberOfItems = setNoOfItems;
     cost = setCost;
 }
 void DispenserType::makeSale() {
-    if (numberOfItems > 0) {
         numberOfItems--;
-    } else {
-        cout << "No more items left" << endl;
-    }
 }
 DispenserType::~DispenserType() {
-//    cout << "DispenserType destructor00" << endl;
-//    delete &numberOfItems;
-//    delete &cost;
-//    cout << "DispenserType destructor11" << endl;
+    cout << "DispenserType destructor" << endl;
 }
 
