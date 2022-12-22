@@ -3,6 +3,9 @@
             Eliav Cohen,    ID: 318191913
  */
 
+#ifndef _Menu_H
+#define _Menu_H
+
 #include <iostream>
 using namespace std;
 
@@ -10,6 +13,7 @@ using namespace std;
 #include "Stack.h"
 
 class Menu {
+    // header file that include the function and variable for the menu
     private:
         VendingMachine Machine;
         Stack stack;
@@ -24,3 +28,4 @@ class Menu {
         void mainMenu();
         ~Menu();
 };
+#endif

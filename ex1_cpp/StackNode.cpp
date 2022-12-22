@@ -5,7 +5,8 @@
 
 #include "StackNode.h"
 
-StackNode::StackNode(int data, StackNode *next){
+StackNode::StackNode(int data, StackNode *next){\
+    //constructor - creat a stack node
     this->data = data;
     this->next = next;
 }

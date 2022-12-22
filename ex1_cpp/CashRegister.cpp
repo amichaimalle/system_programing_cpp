@@ -8,5 +8,6 @@
 
 
 void CashRegister::acceptAmount(int amountIn){
+    //get the amount of money from the user to CashRegister
     cashOnHand += amountIn;
 }

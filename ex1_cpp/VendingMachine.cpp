@@ -9,12 +9,13 @@ using namespace std;
 #include "VendingMachine.h"
 
 VendingMachine::VendingMachine()
+    // this is the constructor , here we define the options, and the cash register object
     : orange(10, 45), carrot(5, 50),
      pomegranate(4, 75), counter() {
     cout << "VendingMachine constructor" << endl;
 };
 void VendingMachine::sellProduct(char product) {
-    int Payment = 0;
+    // this function will sell the product, and will call the other functions to make the sale
     switch (product) {
         case 'O':
             sellFruit(orange);
@@ -29,7 +30,8 @@ void VendingMachine::sellProduct(char product) {
             break;
     }
 }
-void VendingMachine::sellFruit(DispenserType fruit) {
+void VendingMachine::sellFruit(DispenserType &fruit) {
+    // this function will sell the fruit, and will call the other functions to make the sale
     int moneyReceived = 0;
     if (fruit.getNoOfItems() > 0) {
         moneyReceived = getPayment(fruit.getCost());
@@ -43,6 +45,7 @@ void VendingMachine::sellFruit(DispenserType fruit) {
     } else {printSoldOut();}
 }
 int VendingMachine::getPayment(int price) {
+    // this function will get the payment from the user
     int moneyInHand = 0;
     int moneyRecived = 0;
     cout << "Please deposit " << price << " cents" << endl;

@@ -3,10 +3,14 @@
             Eliav Cohen,    ID: 318191913
  */
 
+#ifndef _VendorMachine_H
+#define _VendorMachine_H
+
 #include "DispenserType.h"
 #include "CashRegister.h"
 
 class VendingMachine {
+    // this is a header file for the VendingMachine, which is the machine of the drinks
     private:
         DispenserType orange;
         DispenserType carrot;
@@ -14,7 +18,7 @@ class VendingMachine {
         CashRegister counter;
         int getPayment(int price);
         void printSoldOut() const;
-        void sellFruit(DispenserType fruit);
+        void sellFruit(DispenserType &fruit);
         void printCollectItem() const;
         void printNotEnoughMoney() const;
     public:
@@ -22,3 +26,5 @@ class VendingMachine {
         void sellProduct(char product);
         ~VendingMachine();
 };
+
+#endif
