@@ -1,0 +1,8 @@
+//
+// Created by Amichai Malle on 09/01/2023.
+//
+
+#ifndef SYSTEM_PROGRAMING_CPP_NODE_H
+#define SYSTEM_PROGRAMING_CPP_NODE_H
+
+#endif //SYSTEM_PROGRAMING_CPP_NODE_H
