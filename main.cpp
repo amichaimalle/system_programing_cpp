@@ -4,13 +4,22 @@
  */
 
 #include <iostream>
+using namespace std;
 
-class a{
-    public:
-        a();
-        ~a();
+class checkprint{
+public:
+    char *color;
+    checkprint(char *string1);
 };
 
-int main() {
+checkprint::checkprint(char *string1) {
+    color = new char[strlen(string1)+1];
+    strcpy(this->color,string1);
+}
 
+int main() {
+    char *c = "red";
+    checkprint abc(c);
+    cout << "what:  ";
+    cout << abc.color << endl;
 }

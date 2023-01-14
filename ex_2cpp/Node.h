@@ -1,8 +1,44 @@
-//
-// Created by Amichai Malle on 09/01/2023.
-//
+/*  Assignment C++: 3
+    Author: Amichai Malle,  ID: 308476977
+            Eliav Cohen,    ID: 318191913
+*/
 
-#ifndef SYSTEM_PROGRAMING_CPP_NODE_H
-#define SYSTEM_PROGRAMING_CPP_NODE_H
+#ifndef _Node_H
+#define _Node_H
 
-#endif //SYSTEM_PROGRAMING_CPP_NODE_H
+#include "iostream"
+using namespace std;
+
+template <class T>
+class Node {
+    private:
+        T data;
+        Node<T> *next;
+    public:
+        Node() {
+            this->data = 0;
+            this->next = nullptr;
+        }
+        Node(T data) {          // Constructor
+            this->data = data;
+            next = nullptr;
+        }
+
+        T getData() const { return data; }
+
+        Node<T>* getNext() const { return next; }
+
+        void setNext(Node<T> *nextToSet) { next = nextToSet; }
+
+        //friend ostream& operator<<(ostream& os, const Node<T>& node){
+        //   os << node.data << " ";
+        //    return os;
+        //}
+
+        ~Node() {               // Destructor
+            //delete data;
+            //delete next;
+        }
+};
+
+#endif
