@@ -14,11 +14,11 @@ void Menu::mainMenu() {
     LinkedList<Shape*> shapeList;
     while(choice != 4) {
         printMainMenu();
+        //cleanBuffer();
         cin >> choice;
-        //try{
         switch (choice) {
             case 1:
-                shapeList.insert(getShape());
+                shapeList.insert(chooseShape());
                 break;
             case 2:
                 try {
@@ -30,7 +30,7 @@ void Menu::mainMenu() {
                 break;
             case 3:
                 try {
-                    cout << *shapeList.getTop();
+                    printLastShape(*shapeList.getTop());
                 } catch (const char *msg) {
                     cout << msg << endl;
                 }
@@ -38,91 +38,72 @@ void Menu::mainMenu() {
             default:
                 cout << "Invalid selection." << endl;
         }
-        //} catch (const char *msg) {
-        //    cout << msg << endl;
-        //    cout << "Please try again" << endl;
-        //}
     }
     exit(0);
 }
 
-Shape *Menu::getShape() {
+void Menu::printLastShape(const Shape& shape) const{
+    cout << shape;
+    const Square* square = dynamic_cast<const Square*>(&shape);
+    if (square != nullptr) {
+        square->draw();
+    }
+    const OrthogonalTriangle* triangle = dynamic_cast<const OrthogonalTriangle*>(&shape);
+    if (triangle != nullptr) {
+        triangle->draw();
+    }
+}
+
+Shape *Menu::chooseShape() {
     int shapeChoice;
     Shape *shape = nullptr;
+    char shapeName[20], shapeFeature[30];
     cleanBuffer();
     cout << "Choose 1 for Square, 2 for Circle, 3 for Triangle: ";
     cin >> shapeChoice;
     switch (shapeChoice) {
-        case 1: {
-            do {
-                shape = getSquare();
-            } while (shape == nullptr);
-            return shape;
-        }
+        case 1:
+            strcpy(shapeName,"square");
+            strcpy(shapeFeature,"side length");
+            break;
         case 2:
-            do {
-                shape = getCircle();
-            } while (shape == nullptr);
-            return shape;
+            strcpy(shapeName,"circle");
+            strcpy(shapeFeature,"radius");
+            break;
         case 3:
-            do {
-                shape = getOrthogonalTriangle();
-            } while (shape == nullptr);
-            return shape;
+            strcpy(shapeName,"Triangle");
+            strcpy(shapeFeature,"side");
+            break;
         default:
             cout << "Invalid choice" << endl;
             return nullptr;
     }
+    do{
+        shape = getShape(shapeName, shapeFeature);
+    } while (shape == nullptr);
+    return shape;
 }
 
-Shape *Menu::getSquare(){
+Shape *Menu::getShape(char *shapeName, char *shapeFeature) {
     //char *color = new char[MAX_COLOR_SIZE];
     char color[MAX_COLOR_SIZE];
-    double radius;
-    cout << "Enter square's color: ";
+    double feature;
+    cout << "Enter " << shapeName <<"'s color: ";
     cleanBuffer();
     cin.getline(color, MAX_COLOR_SIZE);
-    cout << "Enter square's side length: ";
-    cin >> radius;
+    cout << "Enter " << shapeName << "'s " << shapeFeature << ": ";
+    cin >> feature;
     try {
-        return new Square(radius, color);
+        if (strcmp(shapeName,"square") == 0) {
+            return new Square(color, feature);
+        } else if (strcmp(shapeName,"circle") == 0) {
+            return new Circle(color, feature);
+        } else { // if (strcmp(shapeName,"Triangle") == 0) {
+            return new OrthogonalTriangle(color, feature);
+        }
     } catch (const char *msg) {
         cout << msg << endl;
         cout << "please try again" << endl;
-        return nullptr;
-    }
-}
-
-Shape *Menu::getOrthogonalTriangle(){
-    //char *color = new char[MAX_COLOR_SIZE];
-    char color[MAX_COLOR_SIZE];
-    double side;
-    cout << "Enter Triangle's color: ";
-    cleanBuffer();
-    cin.getline(color, MAX_COLOR_SIZE);
-    cout << "Enter Triangle's side: ";
-    cin >> side;
-    try {
-        return new OrthogonalTriangle(side, color);
-    } catch (const char *msg) {
-        cout << msg << endl;
-        return nullptr;
-    }
-}
-
-Shape *Menu::getCircle(){
-    //char *color = new char[MAX_COLOR_SIZE];
-    char color[MAX_COLOR_SIZE];
-    double side;
-    cout << "Enter circle's color: ";
-    cleanBuffer();
-    cin.getline(color, MAX_COLOR_SIZE);
-    cout << "Enter circle's radius: ";
-    cin >> side;
-    try {
-        return new Circle(side, color);
-    } catch (const char *msg) {
-        cout << msg << endl;
         return nullptr;
     }
 }

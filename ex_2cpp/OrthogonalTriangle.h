@@ -3,12 +3,12 @@
             Eliav Cohen,    ID: 318191913
 */
 
-#ifndef _OrthogonalTriangle_H
-#define _OrthogonalTriangle_H
-
 #include "Shape.h"
 #include <cmath>
 #include <iostream>
+
+#ifndef _OrthogonalTriangle_H
+#define _OrthogonalTriangle_H
 using namespace std;
 
 class OrthogonalTriangle : public Shape {
@@ -22,7 +22,8 @@ class OrthogonalTriangle : public Shape {
         virtual double getArea() const override;
         virtual double getPerimeter() const override;
         virtual void toOs(ostream& os) const override;
-        virtual bool operator==(const Shape& other) const;
+        //virtual bool operator==(const Shape& other) const;
+        friend ostream& operator<<(ostream& os, const OrthogonalTriangle& shape);
         void draw() const;
         ~OrthogonalTriangle(){};
 };

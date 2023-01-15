@@ -3,12 +3,12 @@
             Eliav Cohen,    ID: 318191913
 */
 
-#ifndef _Square_H
-#define _Square_H
-
 #include "Shape.h"
 #include <iostream>
 using namespace std;
+
+#ifndef _Square_H
+#define _Square_H
 
 class Square : public Shape {
     private:
@@ -21,7 +21,8 @@ class Square : public Shape {
         virtual double getArea() const override;
         virtual double getPerimeter() const override;
         virtual void toOs(ostream& os) const override;
-        virtual bool operator==(const Shape& other) const;
+        friend ostream& operator<<(ostream& os, const Square& shape);
+        //virtual bool operator==(const Shape& other) const;
         void draw() const;
         ~Square(){};
 };

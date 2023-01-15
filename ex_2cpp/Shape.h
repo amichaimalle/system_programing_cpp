@@ -3,12 +3,12 @@
             Eliav Cohen,    ID: 318191913
 */
 
-#ifndef _Shape_H
-#define _Shape_H
-
 #include <string>
 #include <iostream>
 using namespace std;
+
+#ifndef _Shape_H
+#define _Shape_H
 
 class Shape {
     protected:
@@ -20,7 +20,7 @@ class Shape {
         virtual double getArea() const = 0;
         virtual void toOs(ostream& os) const = 0;
         friend ostream& operator<<(ostream& os, const Shape& shape);
-        virtual bool operator==(const Shape& other) const;
+        //virtual bool operator==(const Shape& other) const;
         virtual ~Shape() = 0;
 };
 

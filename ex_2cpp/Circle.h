@@ -3,12 +3,12 @@
             Eliav Cohen,    ID: 318191913
 */
 
-#ifndef _Circle_H
-#define _Circle_H
-
 #include "Shape.h"
 #include <iostream>
 using namespace std;
+
+#ifndef _Circle_H
+#define _Circle_H
 
 class Circle : public Shape {
 private:
@@ -19,7 +19,8 @@ public:
     Circle(char *color, double radius) noexcept(false);
     virtual double getArea() const override;
     virtual double getPerimeter() const override;
-    virtual bool operator==(const Shape& other) const;
+    friend ostream& operator<<(ostream& os, const Circle& shape);
+    //virtual bool operator==(const Shape& other) const;
     virtual void toOs(ostream& os) const override;
     ~Circle(){};
 };

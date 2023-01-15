@@ -6,11 +6,11 @@
 #include "OrthogonalTriangle.h"
 
 OrthogonalTriangle::OrthogonalTriangle(double side, char *color) : Shape(color) {
-    if (side < 0) { throw "Exception: The side must be positive";}
+    if (side <= 0) { throw "Exception: The side must be positive";}
     this->side = side;
 }
 OrthogonalTriangle::OrthogonalTriangle(char *color, double side) : Shape(color) {
-    if (side < 0) { throw "Exception: The side must be positive";}
+    if (side <= 0) { throw "Exception: The side must be positive";}
     this->side = side;
 }
 
@@ -32,17 +32,21 @@ void OrthogonalTriangle::draw() const {
     }
 }
 
-bool OrthogonalTriangle::operator==(const Shape& other) const{
-    if (Shape::operator==(other) == 0){
-        const OrthogonalTriangle* otherOrthogonalTriangle = dynamic_cast<const OrthogonalTriangle*>(&other);
-        if (otherOrthogonalTriangle == nullptr) { return false; }
-        return side == otherOrthogonalTriangle->side;
-    }
-    return false;
+//bool OrthogonalTriangle::operator==(const Shape& other) const{
+//    if (Shape::operator==(other) == 0){
+//        const OrthogonalTriangle* otherOrthogonalTriangle = dynamic_cast<const OrthogonalTriangle*>(&other);
+//        if (otherOrthogonalTriangle == nullptr) { return false; }
+//        return side == otherOrthogonalTriangle->side;
+//    }
+//    return false;
+//}
+
+ostream& operator<<(ostream& os, const OrthogonalTriangle& shape){
+    shape.toOs(os);
+    return os;
 }
 
 void OrthogonalTriangle::toOs(ostream& os) const {
     os << "Square details: color=" << color << ", side=" << side << endl;
     os << "area=" << getArea() << " perimeter=" << getPerimeter() << endl;
-    draw();
 }

@@ -23,13 +23,18 @@ double Circle::getPerimeter() const {
     return 2 * 3.14 * radius;
 }
 
-bool Circle::operator==(const Shape& other) const{
-    if (Shape::operator==(other) == 0){
-        const Circle* otherCircle = dynamic_cast<const Circle*>(&other);
-        if (otherCircle == nullptr) { return false; }
-        return radius == otherCircle->radius;
-    }
-    return false;
+//bool Circle::operator==(const Shape& other) const{
+//    if (Shape::operator==(other) == 0){
+//        const Circle* otherCircle = dynamic_cast<const Circle*>(&other);
+//        if (otherCircle == nullptr) { return false; }
+//        return radius == otherCircle->radius;
+//    }
+//    return false;
+//}
+
+ostream& operator<<(ostream& os, const Circle& shape){
+    shape.toOs(os);
+    return os;
 }
 
 void Circle::toOs(ostream& os) const {

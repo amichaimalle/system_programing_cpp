@@ -3,10 +3,6 @@
             Eliav Cohen,    ID: 318191913
 */
 
-#ifndef _Menu_H
-#define _Menu_H
-
-//#include "Shape.h"
 #include "Circle.h"
 #include "Square.h"
 #include "OrthogonalTriangle.h"
@@ -14,6 +10,9 @@
 #include <string>
 #include <iostream>
 using namespace std;
+
+#ifndef _Menu_H
+#define _Menu_H
 
 class Menu {
     public:
@@ -25,9 +24,11 @@ class Menu {
         //Shape *shape;
         char *getColor();
 
-        static void printMainMenu() ;
+        static void printMainMenu();
+        void printLastShape(const Shape& shape) const;
         void cleanBuffer();
-        Shape *getShape();
+        Shape *chooseShape();
+        Shape *getShape(char *shapeName, char *shapeFeature);
         Shape *getSquare();
         Shape *getOrthogonalTriangle();
         Shape *getCircle();

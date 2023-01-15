@@ -14,9 +14,9 @@ Shape::Shape(char *color) {
     }
 }
 
-bool Shape::operator==(const Shape& other) const{
-    return (strcmp(color,other.color) == 0);
-}
+//bool Shape::operator==(const Shape& other) const{
+//    return (strcmp(color,other.color) == 0);
+//}
 
 ostream& operator<<(ostream& os, const Shape& shape){
     shape.toOs(os);
