@@ -12,7 +12,7 @@ Menu::Menu() {
 
 void Menu::mainMenu() {     // main menu
     LinkedList<Shape*> shapeList;
-    while(choice != 4) {
+    while(true) {
         printMainMenu();
         //cleanBuffer();
         cin >> choice;
@@ -35,11 +35,13 @@ void Menu::mainMenu() {     // main menu
                     cout << msg << endl;
                 }
                 break;
+            case 4:
+                exit(0);
             default:
                 cout << "Invalid selection." << endl;
+                break;
         }
     }
-    exit(0);
 }
 
 void Menu::printLastShape(const Shape& shape) const{    // print the last shape details

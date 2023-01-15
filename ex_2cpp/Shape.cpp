@@ -3,6 +3,8 @@
             Eliav Cohen,    ID: 318191913
 */
 
+//enum colors {red, blue, green};
+
 #include "Shape.h"
 
 Shape::Shape(char *color) {    // constructor with exception on non valid color
