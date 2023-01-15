@@ -14,19 +14,17 @@ using namespace std;
 class OrthogonalTriangle : public Shape {
     private:
         double side;
-        //void draw() const;
+        //void draw() const;    // better to by private but needed for menu
     public:
-        OrthogonalTriangle() : Shape() { side = 0; }
-        OrthogonalTriangle(double side, char *color) noexcept(false);
-        OrthogonalTriangle(char *color, double side) noexcept(false);
-        virtual double getArea() const override;
-        virtual double getPerimeter() const override;
-        virtual void toOs(ostream& os) const override;
-        //virtual bool operator==(const Shape& other) const;
+        OrthogonalTriangle() : Shape() { side = 0; }    // default constructor
+        OrthogonalTriangle(double side, char *color) noexcept(false);   // constructor
+        OrthogonalTriangle(char *color, double side) noexcept(false);   // constructor
+        virtual double getArea() const;
+        virtual double getPerimeter() const;
+        virtual void toOs(ostream& os) const;
         friend ostream& operator<<(ostream& os, const OrthogonalTriangle& shape);
         void draw() const;
-        ~OrthogonalTriangle(){};
+        ~OrthogonalTriangle(){};    // default destructor
 };
-
 
 #endif

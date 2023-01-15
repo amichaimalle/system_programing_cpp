@@ -5,7 +5,7 @@
 
 #include "Shape.h"
 
-Shape::Shape(char *color) {
+Shape::Shape(char *color) {    // constructor with exception on non valid color
     if (not(strcmp(color,"red") && strcmp(color,"green") && strcmp(color,"blue"))) {
         this->color = new char[strlen(color)+1];
         strcpy(this->color,color);
@@ -14,13 +14,9 @@ Shape::Shape(char *color) {
     }
 }
 
-//bool Shape::operator==(const Shape& other) const{
-//    return (strcmp(color,other.color) == 0);
-//}
-
-ostream& operator<<(ostream& os, const Shape& shape){
+ostream& operator<<(ostream& os, const Shape& shape){   // print the shape details
     shape.toOs(os);
     return os;
 }
 
-Shape::~Shape() {}
+Shape::~Shape() {}  // default destructor implementation

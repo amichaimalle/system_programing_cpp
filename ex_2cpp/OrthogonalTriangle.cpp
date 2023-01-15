@@ -5,24 +5,24 @@
 
 #include "OrthogonalTriangle.h"
 
-OrthogonalTriangle::OrthogonalTriangle(double side, char *color) : Shape(color) {
+OrthogonalTriangle::OrthogonalTriangle(double side, char *color) noexcept(false) : Shape(color) {   // constructor
     if (side <= 0) { throw "Exception: The side must be positive";}
     this->side = side;
 }
-OrthogonalTriangle::OrthogonalTriangle(char *color, double side) : Shape(color) {
+OrthogonalTriangle::OrthogonalTriangle(char *color, double side) noexcept(false) : Shape(color) {   // constructor
     if (side <= 0) { throw "Exception: The side must be positive";}
     this->side = side;
 }
 
-double OrthogonalTriangle::getArea() const {
+double OrthogonalTriangle::getArea() const {        // calculate the area of the triangle
     return (side * side) / 2;
 }
 
-double OrthogonalTriangle::getPerimeter() const {
+double OrthogonalTriangle::getPerimeter() const {   // calculate the perimeter of the triangle
     return 2 * side + sqrt(2) * side;
 }
 
-void OrthogonalTriangle::draw() const {
+void OrthogonalTriangle::draw() const {            // draw the triangle - use by menu with RTTI mechanism
     int sideInt = int(side);
     for (int i = 0; i < sideInt; i++) {
         for (int j = 0; j <= i; j++) {
@@ -32,21 +32,12 @@ void OrthogonalTriangle::draw() const {
     }
 }
 
-//bool OrthogonalTriangle::operator==(const Shape& other) const{
-//    if (Shape::operator==(other) == 0){
-//        const OrthogonalTriangle* otherOrthogonalTriangle = dynamic_cast<const OrthogonalTriangle*>(&other);
-//        if (otherOrthogonalTriangle == nullptr) { return false; }
-//        return side == otherOrthogonalTriangle->side;
-//    }
-//    return false;
-//}
-
-ostream& operator<<(ostream& os, const OrthogonalTriangle& shape){
+ostream& operator<<(ostream& os, const OrthogonalTriangle& shape){  // print the triangle details
     shape.toOs(os);
     return os;
 }
 
-void OrthogonalTriangle::toOs(ostream& os) const {
+void OrthogonalTriangle::toOs(ostream& os) const {  // print the triangle details - use for operator<< shape type
     os << "Square details: color=" << color << ", side=" << side << endl;
     os << "area=" << getArea() << " perimeter=" << getPerimeter() << endl;
 }

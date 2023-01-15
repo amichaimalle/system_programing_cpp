@@ -10,7 +10,7 @@ Menu::Menu() {
      choice = 0;
 }
 
-void Menu::mainMenu() {
+void Menu::mainMenu() {     // main menu
     LinkedList<Shape*> shapeList;
     while(choice != 4) {
         printMainMenu();
@@ -42,19 +42,21 @@ void Menu::mainMenu() {
     exit(0);
 }
 
-void Menu::printLastShape(const Shape& shape) const{
-    cout << shape;
-    const Square* square = dynamic_cast<const Square*>(&shape);
+void Menu::printLastShape(const Shape& shape) const{    // print the last shape details
+    // RTTI is not needed here and draw can be implement in << operator.
+    // I did this to show how RTTI can be used in this case as assignment asked.
+    cout << shape;  // use operator<< on shape type
+    const Square* square = dynamic_cast<const Square*>(&shape); // RTTI mechanism for draw() use
     if (square != nullptr) {
         square->draw();
     }
-    const OrthogonalTriangle* triangle = dynamic_cast<const OrthogonalTriangle*>(&shape);
+    const OrthogonalTriangle* triangle = dynamic_cast<const OrthogonalTriangle*>(&shape);   // RTTI mechanism for draw() use
     if (triangle != nullptr) {
         triangle->draw();
     }
 }
 
-Shape *Menu::chooseShape() {
+Shape *Menu::chooseShape() {   // choose shape type to insert
     int shapeChoice;
     Shape *shape = nullptr;
     char shapeName[20], shapeFeature[30];
@@ -84,7 +86,7 @@ Shape *Menu::chooseShape() {
     return shape;
 }
 
-Shape *Menu::getShape(char *shapeName, char *shapeFeature) {
+Shape *Menu::getShape(char *shapeName, char *shapeFeature) {  // get shape details from user
     //char *color = new char[MAX_COLOR_SIZE];
     char color[MAX_COLOR_SIZE];
     double feature;
@@ -93,7 +95,7 @@ Shape *Menu::getShape(char *shapeName, char *shapeFeature) {
     cin.getline(color, MAX_COLOR_SIZE);
     cout << "Enter " << shapeName << "'s " << shapeFeature << ": ";
     cin >> feature;
-    try {
+    try {   // try to create the shape
         if (strcmp(shapeName,"square") == 0) {
             return new Square(color, feature);
         } else if (strcmp(shapeName,"circle") == 0) {
@@ -108,14 +110,15 @@ Shape *Menu::getShape(char *shapeName, char *shapeFeature) {
     }
 }
 
-void Menu::cleanBuffer() {
-    char c;
-    do {
-        c = getchar();
-    } while (c != '\n' && c != EOF);
+void Menu::cleanBuffer() {  // clean buffer
+    //char c;
+    //do {
+     //   c = getchar();
+    //} while (c != '\n' && c != EOF);
+    while (getchar() != '\n' && getchar() != EOF);
 }
 
-void Menu::printMainMenu() {
+void Menu::printMainMenu() {    // print main menu
     cout << "=======================================" << endl;
     cout << "<1>Add element to the list" << endl;
     cout << "<2>Remove the last shape from list" << endl;

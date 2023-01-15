@@ -15,25 +15,34 @@ class LinkedList {
 private:
     Node<T> *head;
 public:
-    LinkedList() { this->head = nullptr; }   // Constructor
+    LinkedList() { this->head = nullptr; }   // default Constructor
     void insert(const T &data);
     T deleteNode() noexcept(false);
     T deleteNode(const T &data) noexcept(false);
     bool search(const T &data);
     const T &getTop() const noexcept(false);
-    friend ostream &operator<<(ostream &os, const LinkedList<T> &list);
-    ~LinkedList();
+    const Node<T> *getHead() const noexcept(false);
+    ~LinkedList();                          // default Destructor
+    // friend function for << operator of template class - must be defined in the class
+    friend ostream& operator<<(ostream& os, const LinkedList<T>& list){
+        Node<T> *temp = list.head;
+        while (temp != nullptr) {
+            os << temp->getData() << " ";
+            temp = temp->getNext();
+        }
+        return os;
+    }
 };
 
 template <class T>
-void LinkedList<T>::insert(const T& data) {               // Insert at the head of list
+void LinkedList<T>::insert(const T& data) {     // Insert at the head of list
     Node<T> *newNode = new Node<T>(data);
     newNode->setNext(head);
     head = newNode;
 }
 
 template <class T>
-T LinkedList<T>::deleteNode() {                    // try to Delete head of the list
+T LinkedList<T>::deleteNode() {                 // try to Delete head of the list
     Node<T> *temp = head;
     if (head == nullptr) {throw "Exception: The List is empty!";}
     head = head->getNext();
@@ -43,7 +52,7 @@ T LinkedList<T>::deleteNode() {                    // try to Delete head of the 
 }
 
 template <class T>
-T LinkedList<T>::deleteNode(const T& data) {       // Delete specific node with data
+T LinkedList<T>::deleteNode(const T& data) {     // Delete specific node with data
     Node<T> *temp = head;
     if (head->getData() == data) {
         try{
@@ -78,23 +87,19 @@ bool LinkedList<T>::search(const T& data) {             // Search for a node in 
 }
 
 template <class T>
-const T& LinkedList<T>::getTop() const {
+const T& LinkedList<T>::getTop() const {            // Get the head Data of the list
     if (head == nullptr) {throw "Exception: The List is empty!";}
     return head->getData();
 }
 
 template <class T>
-ostream& operator<<(ostream& os, const LinkedList<T>& list){
-    Node<T> *temp = list.head;
-    while (temp != nullptr) {
-        os << temp->getData() << " ";
-        temp = temp->getNext();
-    }
-    return os;
+const Node<T> *LinkedList<T>::getHead() const {            // Get the head ptr of the list
+    if (head == nullptr) {throw "Exception: The List is empty!";}
+    return head;
 }
 
 template <class T>
-LinkedList<T>::~LinkedList() {                         // Destructor
+LinkedList<T>::~LinkedList() {                         // default Destructor
     Node<T> *temp = head;
     while (temp != nullptr) {
         head = head->getNext();

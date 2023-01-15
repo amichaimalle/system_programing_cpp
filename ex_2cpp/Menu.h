@@ -16,26 +16,16 @@ using namespace std;
 
 class Menu {
     public:
-        Menu();
+        Menu();     // default constructor
         void mainMenu();
-        ~Menu(){};
+        ~Menu(){};  // default destructor
     private:
         int choice;
-        //Shape *shape;
-        char *getColor();
-
         static void printMainMenu();
         void printLastShape(const Shape& shape) const;
-        void cleanBuffer();
+        static void cleanBuffer();
         Shape *chooseShape();
         Shape *getShape(char *shapeName, char *shapeFeature);
-        Shape *getSquare();
-        Shape *getOrthogonalTriangle();
-        Shape *getCircle();
-
-
-
 };
-
 
 #endif

@@ -5,24 +5,24 @@
 
 #include "Square.h"
 
-Square::Square(double side, char *color) : Shape(color) {
+Square::Square(double side, char *color) noexcept(false) : Shape(color) {  // constructor
     if (side <= 0) { throw "Exception: The side must be positive";}
     this->side = side;
 }
-Square::Square(char *color, double side) : Shape(color) {
+Square::Square(char *color, double side) noexcept(false) : Shape(color) {  // constructor
     if (side <= 0) { throw "Exception: The side must be positive";}
     this->side = side;
 }
 
-double Square::getArea() const {
+double Square::getArea() const {    // calculate the area of the square
     return side * side;
 }
 
-double Square::getPerimeter() const {
+double Square::getPerimeter() const {   // calculate the perimeter of the square
     return 4 * side;
 }
 
-void Square::draw() const {
+void Square::draw() const {        // draw the square - use by menu with RTTI mechanism
     int sideInt = int(side);
     for (int i = 0; i < sideInt; i++) {
         for (int j = 0; j < sideInt; j++) {
@@ -32,21 +32,12 @@ void Square::draw() const {
     }
 }
 
-//bool Square::operator==(const Shape& other) const{
-//    if (Shape::operator==(other) == 0){
-//        const Square* otherSquare = dynamic_cast<const Square*>(&other);
-//        if (otherSquare == nullptr) { return false; }
-//        return side == otherSquare->side;
-//    }
-//    return false;
-//}
-
-ostream& operator<<(ostream& os, const Square& shape){
+ostream& operator<<(ostream& os, const Square& shape){  // print the square details
     shape.toOs(os);
     return os;
 }
 
-void Square::toOs(ostream& os) const {
+void Square::toOs(ostream& os) const {  // print the square details - use for operator<< shape type
     os << "Square details: color=" << color << ", side length=" << side << endl;
     os << "area=" << getArea() << " perimeter=" << getPerimeter() << endl;
 }

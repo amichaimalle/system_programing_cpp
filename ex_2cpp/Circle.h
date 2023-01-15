@@ -14,15 +14,14 @@ class Circle : public Shape {
 private:
     double radius;
 public:
-    Circle() : Shape() {radius = 0;}
-    Circle(double radius, char *color) noexcept(false);
-    Circle(char *color, double radius) noexcept(false);
-    virtual double getArea() const override;
-    virtual double getPerimeter() const override;
+    Circle() : Shape() {radius = 0;}        // default constructor
+    Circle(double radius, char *color) noexcept(false);   // constructor
+    Circle(char *color, double radius) noexcept(false);  // constructor
+    virtual double getArea() const;
+    virtual double getPerimeter() const;
     friend ostream& operator<<(ostream& os, const Circle& shape);
-    //virtual bool operator==(const Shape& other) const;
-    virtual void toOs(ostream& os) const override;
-    ~Circle(){};
+    virtual void toOs(ostream& os) const;
+    ~Circle(){};                        // default destructor
 };
 
 #endif
