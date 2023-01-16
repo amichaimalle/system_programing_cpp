@@ -3,7 +3,7 @@
             Eliav Cohen,    ID: 318191913
 */
 
-#include <string>
+#include <cstring>
 #include <iostream>
 using namespace std;
 

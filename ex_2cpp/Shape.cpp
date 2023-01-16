@@ -3,16 +3,20 @@
             Eliav Cohen,    ID: 318191913
 */
 
-//enum colors {red, blue, green};
-
 #include "Shape.h"
 
+#define INVALID_COLOR "Exception: color must be red green or blue"
+// valid colors
+#define RED "red"
+#define BLUE "blue"
+#define GREEN "green"
+
 Shape::Shape(char *color) {    // constructor with exception on non valid color
-    if (not(strcmp(color,"red") && strcmp(color,"green") && strcmp(color,"blue"))) {
+    if (not(strcmp(color,RED) && strcmp(color,GREEN) && strcmp(color,BLUE))) {
         this->color = new char[strlen(color)+1];
         strcpy(this->color,color);
     } else {
-        throw "Exception: color must be red green or blue";
+        throw INVALID_COLOR;
     }
 }
 

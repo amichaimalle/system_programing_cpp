@@ -4,7 +4,22 @@
 */
 
 #include "Menu.h"
+
 #define MAX_COLOR_SIZE max(strlen("green"), max(strlen("blue"), strlen("red")))+2 //+2 for the \0 and extra letter for error checking
+// shapes definitions
+#define SQUARE "square"
+#define SQUARE_FEATURE "side length"
+#define CIRCLE "circle"
+#define CIRCLE_FEATURE "radius"
+#define TRIANGLE "Triangle"
+#define TRIANGLE_FEATURE "side"
+
+// Messages
+#define TRY_AGAIN "Please try again"
+#define INVALID_CHOICE "Invalid choice"
+#define INVALID_SELECTION "Invalid selection."
+#define EXIT_MSG "Goodbye!"
+
 
 Menu::Menu() {
      choice = 0;
@@ -25,7 +40,7 @@ void Menu::mainMenu() {     // main menu
                     shapeList.deleteNode();
                 } catch (const char *msg) {
                     cout << msg << endl;
-                    cout << "Please try again" << endl;
+                    cout << TRY_AGAIN << endl;
                 }
                 break;
             case 3:
@@ -36,9 +51,10 @@ void Menu::mainMenu() {     // main menu
                 }
                 break;
             case 4:
+                cout << EXIT_MSG << endl;
                 exit(0);
             default:
-                cout << "Invalid selection." << endl;
+                cout << INVALID_SELECTION << endl;
                 break;
         }
     }
@@ -62,24 +78,24 @@ Shape *Menu::chooseShape() {   // choose shape type to insert
     int shapeChoice;
     Shape *shape = nullptr;
     char shapeName[20], shapeFeature[30];
-    cleanBuffer();
+    //cleanBuffer();
     cout << "Choose 1 for Square, 2 for Circle, 3 for Triangle: ";
     cin >> shapeChoice;
     switch (shapeChoice) {
         case 1:
-            strcpy(shapeName,"square");
-            strcpy(shapeFeature,"side length");
+            strcpy(shapeName,SQUARE);
+            strcpy(shapeFeature,SQUARE_FEATURE);
             break;
         case 2:
-            strcpy(shapeName,"circle");
-            strcpy(shapeFeature,"radius");
+            strcpy(shapeName,CIRCLE);
+            strcpy(shapeFeature,CIRCLE_FEATURE);
             break;
         case 3:
-            strcpy(shapeName,"Triangle");
-            strcpy(shapeFeature,"side");
+            strcpy(shapeName,TRIANGLE);
+            strcpy(shapeFeature,TRIANGLE_FEATURE);
             break;
         default:
-            cout << "Invalid choice" << endl;
+            cout << INVALID_CHOICE << endl;
             return nullptr;
     }
     do{
@@ -93,30 +109,27 @@ Shape *Menu::getShape(char *shapeName, char *shapeFeature) {  // get shape detai
     char color[MAX_COLOR_SIZE];
     double feature;
     cout << "Enter " << shapeName <<"'s color: ";
-    cleanBuffer();
-    cin.getline(color, MAX_COLOR_SIZE);
+    //cleanBuffer();
+    //cin.getline(color, MAX_COLOR_SIZE);
+    cin >> color;
     cout << "Enter " << shapeName << "'s " << shapeFeature << ": ";
     cin >> feature;
     try {   // try to create the shape
-        if (strcmp(shapeName,"square") == 0) {
+        if (strcmp(shapeName,SQUARE) == 0) {
             return new Square(color, feature);
-        } else if (strcmp(shapeName,"circle") == 0) {
+        } else if (strcmp(shapeName,CIRCLE) == 0) {
             return new Circle(color, feature);
         } else { // if (strcmp(shapeName,"Triangle") == 0) {
             return new OrthogonalTriangle(color, feature);
         }
     } catch (const char *msg) {
         cout << msg << endl;
-        cout << "please try again" << endl;
+        cout << TRY_AGAIN << endl;
         return nullptr;
     }
 }
 
 void Menu::cleanBuffer() {  // clean buffer
-    //char c;
-    //do {
-     //   c = getchar();
-    //} while (c != '\n' && c != EOF);
     while (getchar() != '\n' && getchar() != EOF);
 }
 

@@ -17,10 +17,10 @@ public:
     Circle() : Shape() {radius = 0;}        // default constructor
     Circle(double radius, char *color) noexcept(false);   // constructor
     Circle(char *color, double radius) noexcept(false);  // constructor
-    virtual double getArea() const;
-    virtual double getPerimeter() const;
+    virtual double getArea() const override;        // calculate the area of the circle
+    virtual double getPerimeter() const override;   // calculate the perimeter of the circle
     friend ostream& operator<<(ostream& os, const Circle& shape);
-    virtual void toOs(ostream& os) const;
+    virtual void toOs(ostream& os) const override;  // print the circle details - use for operator<< shape type
     ~Circle(){};                        // default destructor
 };
 

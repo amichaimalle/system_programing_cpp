@@ -7,7 +7,7 @@
 #include "Square.h"
 #include "OrthogonalTriangle.h"
 #include "LinkedList.h"
-#include <string>
+#include <cstring>
 #include <iostream>
 using namespace std;
 

@@ -5,12 +5,14 @@
 
 #include "Square.h"
 
+#define NEGATIVE_SIDE "Exception: The side must be positive"
+
 Square::Square(double side, char *color) noexcept(false) : Shape(color) {  // constructor
-    if (side <= 0) { throw "Exception: The side must be positive";}
+    if (side <= 0) { throw NEGATIVE_SIDE;}
     this->side = side;
 }
 Square::Square(char *color, double side) noexcept(false) : Shape(color) {  // constructor
-    if (side <= 0) { throw "Exception: The side must be positive";}
+    if (side <= 0) { throw NEGATIVE_SIDE;}
     this->side = side;
 }
 

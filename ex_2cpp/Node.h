@@ -17,12 +17,17 @@ private:
 public:
     Node();                                     // default constructor
     Node(T data);                               // constructor
-    T getData() const { return data; }          // getter for data
+    const T& getData() const { return data; }   // getter for data
     Node<T>* getNext() const { return next; }   // getter for next
     void setData(T data) { this->data = data; } // setter for data
     void setNext(Node<T> *next) { this->next = next; }  // setter for next
-    friend ostream& operator<<(ostream& os, const Node<T>& node);
     ~Node(){} // default Destructor
+    // friend function for << operator of template class - must be defined in the class
+    friend ostream& operator<<(ostream& os, const Node<T>& node){
+        os << node.data << " ";
+        return os;
+    }
+
 };
 
 template <class T>
@@ -36,13 +41,5 @@ Node<T>::Node(T data) {          // Constructor
     this->data = data;
     next = nullptr;
 }
-
-
-template <class T>
-ostream& operator<<(ostream& os, const Node<T>& node){
-   os << node.data << " ";
-    return os;
-}
-
 
 #endif

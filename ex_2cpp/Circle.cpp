@@ -5,13 +5,15 @@
 
 #include "Circle.h"
 
+#define NEGATIVE_RADIUS "Radius must be positive"
+
 Circle::Circle(double radius, char *color) noexcept(false) : Shape(color) {     // Constructor
-    if (radius <= 0) {throw "Radius must be positive";}
+    if (radius <= 0) {throw NEGATIVE_RADIUS;}
     this->radius = radius;
 }
 
 Circle::Circle(char *color, double radius) noexcept(false) : Shape(color) {     // constructor
-    if (radius <= 0) {throw "Radius must be positive";}
+    if (radius <= 0) {throw NEGATIVE_RADIUS;}
     this->radius = radius;
 }
 

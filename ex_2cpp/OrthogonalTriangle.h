@@ -14,14 +14,13 @@ using namespace std;
 class OrthogonalTriangle : public Shape {
     private:
         double side;
-        //void draw() const;    // better to by private but needed for menu
     public:
         OrthogonalTriangle() : Shape() { side = 0; }    // default constructor
         OrthogonalTriangle(double side, char *color) noexcept(false);   // constructor
         OrthogonalTriangle(char *color, double side) noexcept(false);   // constructor
-        virtual double getArea() const;
-        virtual double getPerimeter() const;
-        virtual void toOs(ostream& os) const;
+        virtual double getArea() const override;        // calculate the area of the triangle
+        virtual double getPerimeter() const override;   // calculate the perimeter of the triangle
+        virtual void toOs(ostream& os) const override;  // print the triangle details - use for operator<< shape type
         friend ostream& operator<<(ostream& os, const OrthogonalTriangle& shape);
         void draw() const;
         ~OrthogonalTriangle(){};    // default destructor

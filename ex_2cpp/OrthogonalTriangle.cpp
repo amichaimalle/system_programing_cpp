@@ -5,12 +5,14 @@
 
 #include "OrthogonalTriangle.h"
 
+#define NEGATIVE_SIDE "Exception: The side must be positive"
+
 OrthogonalTriangle::OrthogonalTriangle(double side, char *color) noexcept(false) : Shape(color) {   // constructor
-    if (side <= 0) { throw "Exception: The side must be positive";}
+    if (side <= 0) { throw NEGATIVE_SIDE;}
     this->side = side;
 }
 OrthogonalTriangle::OrthogonalTriangle(char *color, double side) noexcept(false) : Shape(color) {   // constructor
-    if (side <= 0) { throw "Exception: The side must be positive";}
+    if (side <= 0) { throw NEGATIVE_SIDE;}
     this->side = side;
 }
 

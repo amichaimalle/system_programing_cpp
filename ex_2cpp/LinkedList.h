@@ -10,6 +10,9 @@ using namespace std;
 #ifndef _LinkedList_H
 #define _LinkedList_H
 
+#define EMPTY_LIST "Exception: The List is empty!"
+#define NODE_NOT_FOUND "Exception: The node was not found!"
+
 template <class T>
 class LinkedList {
 private:
@@ -17,12 +20,13 @@ private:
 public:
     LinkedList() { this->head = nullptr; }   // default Constructor
     void insert(const T &data);
+    bool search(const T &data);
     T deleteNode() noexcept(false);
     T deleteNode(const T &data) noexcept(false);
-    bool search(const T &data);
     const T &getTop() const noexcept(false);
     const Node<T> *getHead() const noexcept(false);
     ~LinkedList();                          // default Destructor
+
     // friend function for << operator of template class - must be defined in the class
     friend ostream& operator<<(ostream& os, const LinkedList<T>& list){
         Node<T> *temp = list.head;
@@ -44,7 +48,7 @@ void LinkedList<T>::insert(const T& data) {     // Insert at the head of list
 template <class T>
 T LinkedList<T>::deleteNode() {                 // try to Delete head of the list
     Node<T> *temp = head;
-    if (head == nullptr) {throw "Exception: The List is empty!";}
+    if (head == nullptr) {throw EMPTY_LIST;}
     head = head->getNext();
     T data = temp->getData();
     delete temp;
@@ -71,7 +75,7 @@ T LinkedList<T>::deleteNode(const T& data) {     // Delete specific node with da
         }
         temp = temp->getNext();
     }
-    throw "Exception: The node was not found!";
+    throw NODE_NOT_FOUND;
 }
 
 template <class T>
@@ -88,13 +92,13 @@ bool LinkedList<T>::search(const T& data) {             // Search for a node in 
 
 template <class T>
 const T& LinkedList<T>::getTop() const {            // Get the head Data of the list
-    if (head == nullptr) {throw "Exception: The List is empty!";}
+    if (head == nullptr) {throw EMPTY_LIST;}
     return head->getData();
 }
 
 template <class T>
 const Node<T> *LinkedList<T>::getHead() const {            // Get the head ptr of the list
-    if (head == nullptr) {throw "Exception: The List is empty!";}
+    if (head == nullptr) {throw EMPTY_LIST;}
     return head;
 }
 
